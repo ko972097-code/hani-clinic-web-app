@@ -1,0 +1,36 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root {
+  --primary: #8a6d3b;
+  --bg-color: #f7f9fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  background-color: var(--bg-color);
+  color: #333333;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: transparent !important;
+  }
+  .container {
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+}
