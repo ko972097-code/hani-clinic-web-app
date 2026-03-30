@@ -7,11 +7,12 @@ export async function POST(request) {
     // Server-side API KEY (안전한 보관)
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return new Response(JSON.stringify({ error: "서버에 API 키 설정이 누락되어 있습니다 (배포 후 규칙 확인 바람)." }), { status: 500, headers: {'Content-Type': 'application/json'} });
+      return new Response(JSON.stringify({ error: "서버에 API 키 설정이 누락되어 있습니다." }), { status: 500, headers: {'Content-Type': 'application/json'} });
     }
     
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    // Vercel의 구버전 캐싱 충돌을 피하기 위해 1.0 Pro 모델로 안전하게 강제 지정
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     
     const prompt = `
 당신은 한의원 진료 상담 내용을 듣고 핵심만 요약하는 한의원 실장입니다.
